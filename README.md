@@ -1,75 +1,56 @@
-# React + TypeScript + Vite
+# 🚀 Challenge Hospital Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+_Dashboard administrativo para la gestión de tickets._
 
-Currently, two official plugins are available:
+## 📋 Pre-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
-## React Compiler
+- [Node.js](https://nodejs.org/) (Versión 18 o superior recomendada)
+- [npm](https://www.npmjs.com/) o [Yarn](https://yarnpkg.com/)
+- [Git](https://git-scm.com/)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🛠️ Instalación y Configuración Local
 
-## Expanding the ESLint configuration
+Sigue estos pasos para tener el entorno de desarrollo corriendo en tu computadora:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Clonar el repositorio
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Abre una terminal y ejecuta el siguiente comando:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/obmoreno89/challenge-hospital-frontend.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Instalar dependencias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+Instalar los package y depencias que cuenta el proyecto con el siguiente comando:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- npm install
+
+Cabe mencionar que deberas abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
+
+```
+
+### 2. Ejecutar proyecto en tu entorno local
+
+```bash
+Para poder ejecutar el servidor local, ejecuta el siguiente comando:
+
+- npm run dev
+
+Si requieres para el entorno ejecuta el comando en tu teclado CTRL + C, para volver a ejecutar el servidor local, se ocupa el comando antes mencionado
+
+Cabe mencionar que deberas abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
+
+```
+
+### 3. Credenciales de acceso, en caso de no estar precargadas, las cuales son las siguientes:
+
+```bash
+correo corporativo: omar@hospital.com
+contraseña: Hospital20
 ```
