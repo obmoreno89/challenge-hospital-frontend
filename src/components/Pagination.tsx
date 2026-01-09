@@ -1,14 +1,14 @@
 interface PaginationProps {
-  paginaActual: number;
-  totalPaginas: number;
+  currentPage: number;
+  pagesTotal: number;
   onNext: () => void;
   onPrev: () => void;
   onSetPage: (pagina: number) => void;
 }
 
 export const Pagination = ({
-  paginaActual,
-  totalPaginas,
+  currentPage,
+  pagesTotal,
   onNext,
   onPrev,
   onSetPage,
@@ -22,25 +22,25 @@ export const Pagination = ({
   const disabledClass =
     'text-gray-300 bg-gray-50 dark:bg-gray-900 dark:text-gray-600 cursor-not-allowed opacity-50';
 
-  const obtenerPaginasVisibles = () => {
-    const paginas: (number | string)[] = [];
-    const limite = 5;
+  const getPagesVisibility = () => {
+    const pages: (number | string)[] = [];
+    const limit = 5;
 
-    if (totalPaginas <= limite + 1) {
-      for (let i = 1; i <= totalPaginas; i++) paginas.push(i);
+    if (pagesTotal <= limit + 1) {
+      for (let i = 1; i <= pagesTotal; i++) pages.push(i);
     } else {
-      for (let i = 1; i <= limite; i++) {
-        paginas.push(i);
+      for (let i = 1; i <= limit; i++) {
+        pages.push(i);
       }
-      paginas.push('...');
+      pages.push('...');
 
-      paginas.push(totalPaginas);
+      pages.push(pagesTotal);
     }
 
-    return paginas;
+    return pages;
   };
 
-  const paginasVisibles = obtenerPaginasVisibles();
+  const showPage = getPagesVisibility();
 
   return (
     <div>
@@ -48,11 +48,11 @@ export const Pagination = ({
         <span className='text-sm font-normal text-gray-500 dark:text-gray-400 mb-3'>
           Pagina{' '}
           <span className='font-semibold text-gray-900 dark:text-white'>
-            {paginaActual}
+            {currentPage}
           </span>{' '}
           de{' '}
           <span className='font-semibold text-gray-900 dark:text-white'>
-            {totalPaginas}
+            {pagesTotal}
           </span>
         </span>
 
@@ -60,9 +60,9 @@ export const Pagination = ({
           <li>
             <button
               onClick={onPrev}
-              disabled={paginaActual === 1}
+              disabled={currentPage === 1}
               className={`${baseArrowClass} rounded-l-lg ${
-                paginaActual === 1 ? disabledClass : activeClass
+                currentPage === 1 ? disabledClass : activeClass
               }`}
             >
               <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
@@ -74,7 +74,7 @@ export const Pagination = ({
               </svg>
             </button>
           </li>
-          {paginasVisibles.map((item, index) => (
+          {showPage.map((item, index) => (
             <li key={index}>
               {item === '...' ? (
                 <span className='flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400'>
@@ -84,7 +84,7 @@ export const Pagination = ({
                 <button
                   onClick={() => onSetPage(Number(item))}
                   className={`flex items-center justify-center text-sm py-2 px-3 leading-tight border border-gray-300 dark:border-gray-700 cursor-pointer transition-colors ${
-                    paginaActual === item
+                    currentPage === item
                       ? 'text-blue-600 bg-blue-50 dark:bg-gray-700 dark:text-white font-bold'
                       : 'text-gray-500 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700'
                   }`}
@@ -97,9 +97,9 @@ export const Pagination = ({
           <li>
             <button
               onClick={onNext}
-              disabled={paginaActual === totalPaginas}
+              disabled={currentPage === pagesTotal}
               className={`${baseArrowClass} rounded-r-lg ${
-                paginaActual === totalPaginas ? disabledClass : activeClass
+                currentPage === pagesTotal ? disabledClass : activeClass
               }`}
             >
               <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>

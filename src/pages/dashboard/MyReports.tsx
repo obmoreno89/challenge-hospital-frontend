@@ -3,22 +3,22 @@ import { NavBar, Table, Spinner, Pagination } from '../../components/index';
 import { useGetTicket } from '../../hooks';
 
 export const MyReports = () => {
-  const [paginaActual, setPaginaActual] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const { dataTicket, isLoading, isFetching, error, refetch } =
-    useGetTicket(paginaActual);
+    useGetTicket(currentPage);
 
-  const totalPaginas = dataTicket?.total_paginas || 1;
+  const pagesTotal = dataTicket?.total_paginas || 1;
 
   const handleNext = () => {
-    if (paginaActual < totalPaginas) setPaginaActual((prev) => prev + 1);
+    if (currentPage < pagesTotal) setCurrentPage((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    if (paginaActual > 1) setPaginaActual((prev) => prev - 1);
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   const handleSetPage = (num: number) => {
-    setPaginaActual(num);
+    setCurrentPage(num);
   };
 
   return (
@@ -59,8 +59,8 @@ export const MyReports = () => {
             <div className='flex flex-col justify-center items-center min-h-screen'>
               <Table dataTickets={dataTicket} />
               <Pagination
-                paginaActual={paginaActual}
-                totalPaginas={totalPaginas}
+                currentPage={currentPage}
+                pagesTotal={pagesTotal}
                 onNext={handleNext}
                 onPrev={handlePrev}
                 onSetPage={handleSetPage}
