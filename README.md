@@ -26,27 +26,24 @@ git clone https://github.com/obmoreno89/challenge-hospital-frontend.git
 
 ### 2. Instalar dependencias
 
-```bash
 Instalar los package y depencias que cuenta el proyecto con el siguiente comando:
 
+```bash
 - npm install
+```
 
 Cabe mencionar que deberas abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
-
-```
 
 ### 2. Ejecutar proyecto en tu entorno local
 
-```bash
 Para poder ejecutar el servidor local, ejecuta el siguiente comando:
 
+```bash
 - npm run dev
+```
 
 Si requieres para el entorno ejecuta el comando en tu teclado CTRL + C, para volver a ejecutar el servidor local, se ocupa el comando antes mencionado
 
-Cabe mencionar que deberas abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
-
-```
 
 ### 3. Credenciales de acceso, en caso de no estar precargadas, las cuales son las siguientes:
 
