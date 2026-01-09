@@ -21,7 +21,9 @@ export const ModalForm = ({
   isSuccessSend,
   onSubmitAction,
 }: FormProps) => {
-  const { asunto } = useAppSelector((state) => state.formData);
+  const { asunto, prioridad, detalle } = useAppSelector(
+    (state) => state.formData
+  );
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
@@ -38,7 +40,12 @@ export const ModalForm = ({
     defaultValues:
       pathname === '/login'
         ? { correo: 'omar@hospital.com', contrasena: 'Hospital20' }
-        : { asunto: asunto, prioridad: '', detalle: '', archivo: null },
+        : {
+            asunto: asunto,
+            prioridad: prioridad,
+            detalle: detalle,
+            archivo: null,
+          },
   });
 
   const currentFields = pathname === '/login' ? formFields : formCreate;
@@ -47,8 +54,8 @@ export const ModalForm = ({
 
   useEffect(() => {
     const subscription = watch((value) => {
-      const { archivo, ...datosParaRedux } = value;
-      dispatch(setFormData(datosParaRedux));
+      const { archivo, ...dataForSlice } = value;
+      dispatch(setFormData(dataForSlice));
     });
     return () => subscription.unsubscribe();
   }, [watch, dispatch]);

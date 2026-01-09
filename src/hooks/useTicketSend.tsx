@@ -26,8 +26,8 @@ export const useTicketSend = () => {
 
     try {
       await createTicket(formData).unwrap();
-      dispatch(clearStateForm());
       setTimeout(() => {
+        dispatch(clearStateForm());
         navigate('/reportes');
       }, 3000);
     } catch (error) {
