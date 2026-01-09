@@ -32,7 +32,7 @@ Instalar los package y depencias que cuenta el proyecto con el siguiente comando
 - npm install
 ```
 
-Cabe mencionar que deberas abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
+Cabe mencionar que deberás abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
 
 ### 2. Ejecutar proyecto en tu entorno local
 
