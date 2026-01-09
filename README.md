@@ -7,7 +7,7 @@ _Dashboard administrativo para la gestión de tickets._
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 - [Node.js](https://nodejs.org/) (Versión 18 o superior recomendada)
-- [npm](https://www.npmjs.com/) o [Yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 - [Git](https://git-scm.com/)
 
 ---
