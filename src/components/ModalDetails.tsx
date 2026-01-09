@@ -3,6 +3,8 @@ import { type Ticket } from '../types';
 import { statusTicket, priority } from '../model';
 import { useEffect } from 'react';
 import { useUpdateTicket } from '../hooks';
+import { useAppDispatch } from '../store/hooks';
+import { setFormData } from '../store/slice/formData';
 
 interface ModalDetailsProps {
   isOpen: boolean;
@@ -24,12 +26,17 @@ export const ModalDetails = ({
     },
   });
   const selectedStatus = watch('estatus');
+  const dataTicketStorage = JSON.parse(
+    localStorage.getItem('ticketStorage') || '{}'
+  );
+  const dispatch = useAppDispatch();
   const { patchTicket, isLoadingUpdateTicket, isErrorUpdateTicker } =
     useUpdateTicket();
 
   useEffect(() => {
     if (selectedStatus) {
       patchTicket(selectedStatus);
+      dispatch(setFormData({ id: dataTicketStorage.id }));
     }
   }, [selectedStatus, patchTicket]);
 
@@ -49,8 +56,9 @@ export const ModalDetails = ({
               <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
                 Detalles del Ticket
               </h2>
+
               <span className='text-xs font-mono text-gray-400'>
-                ID: {ticketDetailData?.id}
+                ID: {ticketDetailData?.id || dataTicketStorage?.id}
               </span>
             </div>
 
@@ -67,7 +75,7 @@ export const ModalDetails = ({
                         Fecha
                       </label>
                       <p className='text-sm text-gray-900 dark:text-gray-300'>
-                        {ticketDetailData?.fecha}
+                        {ticketDetailData?.fecha || dataTicketStorage.fecha}
                       </p>
                     </div>
                     <div>
@@ -76,15 +84,20 @@ export const ModalDetails = ({
                       </label>
                       <p
                         className={`text-sm font-bold ${
-                          ticketDetailData?.prioridad === 1
+                          (ticketDetailData?.prioridad ||
+                            dataTicketStorage?.prioridad) === 1
                             ? 'text-red-500'
-                            : ticketDetailData?.prioridad === 2
+                            : (ticketDetailData?.prioridad ||
+                                dataTicketStorage?.prioridad) === 2
                             ? 'text-orange-500'
                             : 'text-green-500'
                         }`}
                       >
                         {priority.find(
-                          (p) => p.id === ticketDetailData?.prioridad
+                          (p) =>
+                            p.id ===
+                            (ticketDetailData?.prioridad ||
+                              dataTicketStorage?.prioridad)
                         )?.name || 'Sin prioridad'}
                       </p>
                     </div>
@@ -96,7 +109,7 @@ export const ModalDetails = ({
                         Asunto
                       </label>
                       <p className='text-sm font-medium text-gray-900 dark:text-white'>
-                        {ticketDetailData?.asunto}
+                        {ticketDetailData?.asunto || dataTicketStorage.asunto}
                       </p>
                     </div>
 
@@ -107,7 +120,9 @@ export const ModalDetails = ({
 
                       <p className='text-sm font-bold text-white dark:text-white'>
                         {statusTicket.find(
-                          (s) => s.id === ticketDetailData?.estatus
+                          (s) =>
+                            s.id === ticketDetailData?.estatus ||
+                            dataTicketStorage.estatus
                         )?.name || 'Sin estado'}
                       </p>
                     </div>
@@ -150,7 +165,8 @@ export const ModalDetails = ({
                       </div>
                     </div>
 
-                    {!ticketDetailData?.archivo_url ? (
+                    {!ticketDetailData?.archivo_url &&
+                    !dataTicketStorage?.archivo_url ? (
                       <button
                         disabled
                         className='flex items-center gap-2 px-3 py-2 text-xs font-bold text-gray-400 bg-gray-200 dark:bg-gray-700 rounded-lg cursor-not-allowed opacity-60'
@@ -172,7 +188,11 @@ export const ModalDetails = ({
                       </button>
                     ) : (
                       <a
-                        href={ticketDetailData.archivo_url}
+                        href={
+                          ticketDetailData?.archivo_url ||
+                          dataTicketStorage?.archivo_url ||
+                          '#'
+                        }
                         target='_blank'
                         rel='noreferrer'
                         download='ticket-archivo.pdf'
@@ -202,6 +222,7 @@ export const ModalDetails = ({
                     </label>
                     <div className='max-h-32 overflow-y-auto bg-gray-50 dark:bg-gray-700/30 p-3 rounded-lg border dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300 leading-relaxed'>
                       {ticketDetailData?.detalle ||
+                        dataTicketStorage.detalle ||
                         'No hay descripción disponible.'}
                     </div>
                   </div>
@@ -224,7 +245,10 @@ export const ModalDetails = ({
                 )}
                 <div className='flex gap-4 mt-8'>
                   <button
-                    onClick={onClose}
+                    onClick={() => {
+                      onClose();
+                      localStorage.removeItem('ticketStorage');
+                    }}
                     type='button'
                     className='flex-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl shadow-lg shadow-blue-500/30 transition-all active:scale-95'
                   >

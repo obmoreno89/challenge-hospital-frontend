@@ -6,7 +6,10 @@ export const useGetTicketById = () => {
 
   const handleOpenDetails = async (id: number) => {
     try {
-      await triggerGetDetails(id).unwrap();
+      const response = await triggerGetDetails(id).unwrap();
+      if (response) {
+        localStorage.setItem('ticketStorage', JSON.stringify(response));
+      }
     } catch (error) {
       console.error(error);
     }

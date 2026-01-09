@@ -11,7 +11,10 @@ interface TicketsProps {
 }
 
 export const Table = ({ dataTickets }: TicketsProps) => {
-  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(() => {
+    return localStorage.getItem('ticketStorage') !== null;
+  });
+
   const tickets = dataTickets?.resultado || [];
   const { handleOpenDetails, ticketData, isLoadingDetail } = useGetTicketById();
   const dispatch = useAppDispatch();

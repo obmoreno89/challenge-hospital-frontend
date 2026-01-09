@@ -9,7 +9,6 @@ interface TicketState {
 const initialState: TicketState = {
   id: 0,
   asunto: '',
-  detalle: '',
 };
 
 export const formDataSlice = createSlice({
@@ -24,9 +23,6 @@ export const formDataSlice = createSlice({
       }
       if (payload.asunto !== undefined) {
         state.asunto = payload.asunto;
-      }
-      if (payload.detalle !== undefined) {
-        state.detalle = payload.detalle;
       }
     },
     clearStateForm: (state) => {
