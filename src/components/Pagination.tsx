@@ -44,8 +44,8 @@ export const Pagination = ({
 
   return (
     <div>
-      <div className='w-full max-w-4xl flex flex-col items-center justify-between space-y-3 md:flex-row md:space-y-0 p-4 shadow-lg'>
-        <span className='text-sm font-normal text-gray-500 dark:text-gray-400'>
+      <div className='w-full max-w-4xl flex flex-col items-center justify-between space-y-3 md:space-y-0 p-4 shadow-lg'>
+        <span className='text-sm font-normal text-gray-500 dark:text-gray-400 mb-3'>
           Pagina{' '}
           <span className='font-semibold text-gray-900 dark:text-white'>
             {paginaActual}
