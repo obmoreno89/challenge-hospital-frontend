@@ -6,3 +6,4 @@ export * from './Table';
 export * from './Spinner';
 export * from './Pagination';
 export * from './ModalDetails';
+export * from './ModalDelete';

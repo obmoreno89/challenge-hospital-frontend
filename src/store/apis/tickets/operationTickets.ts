@@ -56,6 +56,15 @@ export const operationTickets = createApi({
       }),
       invalidatesTags: ['Tickets'],
     }),
+
+    deleteTicket: builder.mutation<TicketSendResponse, number | string>({
+      query: (id) => ({
+        url: `/operaciones/tickets/${id}`,
+        method: 'DELETE',
+      }),
+
+      invalidatesTags: ['Tickets'],
+    }),
   }),
 });
 
@@ -64,4 +73,5 @@ export const {
   useCreateTicketMutation,
   useLazyGetTicketByIdQuery,
   useUpdateTicketMutation,
+  useDeleteTicketMutation,
 } = operationTickets;

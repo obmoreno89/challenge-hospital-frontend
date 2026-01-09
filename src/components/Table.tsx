@@ -1,6 +1,6 @@
 import { type TicketsResponse } from '../types/index';
 import { useState } from 'react';
-import { ModalDetails } from './index';
+import { ModalDetails, ModalDelete } from './index';
 import { useGetTicketById } from '../hooks';
 import { useAppDispatch } from '../store/hooks';
 import { setFormData } from '../store/slice/formData';
@@ -14,6 +14,7 @@ export const Table = ({ dataTickets }: TicketsProps) => {
   const [isViewModalOpen, setIsViewModalOpen] = useState(() => {
     return localStorage.getItem('ticketStorage') !== null;
   });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const tickets = dataTickets?.resultado || [];
   const { handleOpenDetails, ticketData, isLoadingDetail } = useGetTicketById();
@@ -117,7 +118,13 @@ export const Table = ({ dataTickets }: TicketsProps) => {
                           />
                         </svg>
                       </button>
-                      <button className='text-red-600 dark:text-red-500 hover:scale-110 transition-transform p-1 cursor-pointer'>
+                      <button
+                        onClick={() => {
+                          dispatch(setFormData({ id: ticket.id }));
+                          setShowDeleteModal(true);
+                        }}
+                        className='text-red-600 dark:text-red-500 hover:scale-110 transition-transform p-1 cursor-pointer'
+                      >
                         <svg
                           className='w-5 h-5'
                           fill='none'
@@ -145,6 +152,11 @@ export const Table = ({ dataTickets }: TicketsProps) => {
         onClose={() => setIsViewModalOpen(false)}
         ticketDetailData={ticketData}
         isLoading={isLoadingDetail}
+      />
+      <ModalDelete
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        title='ticket'
       />
     </>
   );
