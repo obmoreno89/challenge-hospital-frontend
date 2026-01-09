@@ -34,7 +34,7 @@ Instalar los package y depencias que cuenta el proyecto con el siguiente comando
 
 Cabe mencionar que deberás abrir la terminal en donde guardaste el proyecto, posicionate en la carpeta raiz del proyecto
 
-### 2. Ejecutar proyecto en tu entorno local
+### 3. Ejecutar proyecto en tu entorno local
 
 Para poder ejecutar el servidor local, ejecuta el siguiente comando:
 
@@ -45,7 +45,7 @@ Para poder ejecutar el servidor local, ejecuta el siguiente comando:
 Si requieres para el entorno ejecuta el comando en tu teclado CTRL + C, para volver a ejecutar el servidor local, se ocupa el comando antes mencionado
 
 
-### 3. Credenciales de acceso, en caso de no estar precargadas, las cuales son las siguientes:
+### 4. Credenciales de acceso, en caso de no estar precargadas, las cuales son las siguientes:
 
 ```bash
 correo corporativo: omar@hospital.com
