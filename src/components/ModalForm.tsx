@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { FormInput } from './index';
 import { formFields, formCreate } from '../model/index';
 import { ButtonLoading } from './index';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { useEffect } from 'react';
 import { setFormData } from '../store/slice/formData';
+import { FormRenderer } from '../utils';
 
 interface FormProps {
   titleButton: string;
@@ -92,14 +92,11 @@ export const ModalForm = ({
             className='space-y-4 md:space-y-6'
             onSubmit={handleSubmit(onSubmit)}
           >
-            {currentFields.map((field) => (
-              <FormInput
-                key={field.name}
-                {...field}
-                register={register}
-                error={errors[field.name]}
-              />
-            ))}
+            <FormRenderer
+              fields={currentFields}
+              register={register}
+              errors={errors}
+            />
 
             {errors.root && (
               <div

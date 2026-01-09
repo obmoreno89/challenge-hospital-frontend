@@ -16,6 +16,14 @@ export const FormInput = ({
 
   return (
     <div className='w-full mb-4'>
+      {label && (
+        <label
+          htmlFor={name}
+          className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+        >
+          {label}
+        </label>
+      )}
       {type === 'select' && (
         <select
           {...register(name, validation)}
@@ -41,10 +49,6 @@ export const FormInput = ({
 
       {type === 'file' && (
         <div className='flex flex-col gap-2'>
-          <label className='block text-sm font-medium text-gray-900 dark:text-white'>
-            {label}
-          </label>
-
           <input
             type='file'
             className='block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-white file:text-blue-600 hover:file:text-black hover:file:bg-gray-400 cursor-pointer'

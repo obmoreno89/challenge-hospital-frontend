@@ -4,3 +4,13 @@ export interface CreateTicketInputs {
   detalle: string;
   archivo: FileList;
 }
+
+export interface UpdateTicket {
+  estatus: number | string;
+}
+
+export interface TicketDetail extends CreateTicketInputs {
+  id: number;
+  fecha: string;
+  estatus: string;
+}

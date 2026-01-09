@@ -3,9 +3,11 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 interface TicketState {
   asunto: string;
   detalle?: string;
+  id: number;
 }
 
 const initialState: TicketState = {
+  id: 0,
   asunto: '',
   detalle: '',
 };
@@ -17,6 +19,9 @@ export const formDataSlice = createSlice({
     setFormData: (state, action: PayloadAction<Partial<TicketState>>) => {
       const { payload } = action;
 
+      if (payload.id !== undefined) {
+        state.id = payload.id;
+      }
       if (payload.asunto !== undefined) {
         state.asunto = payload.asunto;
       }
@@ -25,6 +30,7 @@ export const formDataSlice = createSlice({
       }
     },
     clearStateForm: (state) => {
+      state.id = 0;
       state.asunto = '';
       state.detalle = '';
     },

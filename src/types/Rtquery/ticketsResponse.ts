@@ -21,3 +21,11 @@ export interface TicketSendResponse {
   folio: string;
   mensaje: string;
 }
+
+export interface DetailTicketResponse {
+  folio: string;
+  mensaje: string;
+  resultado: Ticket;
+}
+
+export type TicketDetail = Ticket;
